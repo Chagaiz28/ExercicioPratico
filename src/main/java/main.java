@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class main {
@@ -24,43 +25,48 @@ public class main {
         c1.marca = "Positivo";
         c1.preço = 2300;
         c1.hardware1 = new HardwareBasico("Pentium Core i3", 2200);
-        c1.hardware2 = new HardwareBasico("Memória RAM",8);
-        c1.hardware3 = new HardwareBasico("HD",500);
-        c1.addMemoriaUSB(pd);
+        c1.hardware2 = new HardwareBasico("Memória RAM", 8);
+        c1.hardware3 = new HardwareBasico("HD", 500);
 
         Computador c2 = new Computador();
         c2.marca = "Acer";
         c2.preço = 5800;
         c2.hardware1 = new HardwareBasico("Pentium Core i5", 3370);
-        c2.hardware2 = new HardwareBasico("Memória RAM",16);
-        c2.hardware3 = new HardwareBasico("HD",1);
-        c2.addMemoriaUSB(pd2);
+        c2.hardware2 = new HardwareBasico("Memória RAM", 16);
+        c2.hardware3 = new HardwareBasico("HD", 1);
 
         Computador c3 = new Computador();
         c3.marca = "Vaio";
         c3.preço = 1800;
         c3.hardware1 = new HardwareBasico("Pentium Core i7", 4500);
-        c3.hardware2 = new HardwareBasico("Memória RAM",32);
-        c3.hardware3 = new HardwareBasico("HD",2);
-        c3.addMemoriaUSB(hd);
+        c3.hardware2 = new HardwareBasico("Memória RAM", 32);
+        c3.hardware3 = new HardwareBasico("HD", 2);
 
-        System.out.println("Escolha uma opção");
+        cliente.computadorCliente = new ArrayList<>();
+
         int op;
-        do{
-            System.out.println("Escolha a promoção: ");
+        do {
+            System.out.println("Escolha a promoção (1, 2, 3) ou 0 para sair: ");
             op = scanner.nextInt();
-            if(op == 1)
-                cliente.computadorCliente = c1;
-            else if(op == 2)
-                cliente.computadorCliente = c2;
-            else if(op == 3)
-                cliente.computadorCliente = c3;
-            else
+
+            if (op == 1) {
+                cliente.computadorCliente.add(c1);
+            } else if (op == 2) {
+                cliente.computadorCliente.add(c2);
+            } else if (op == 3) {
+                cliente.computadorCliente.add(c3);
+            } else if (op != 0) {
                 System.out.println("Opção Inválida");
-        }while(op !=0);
+            }
 
+        } while (op != 0);
 
-
-
+        cliente.mostraCliente();
+        float totalCompra = 0;
+        for (Computador computador : cliente.computadorCliente) {
+            totalCompra += computador.preço;
+            computador.mostraPCConfig();
+        }
+        System.out.println("Total da Compra: " + totalCompra);
     }
 }

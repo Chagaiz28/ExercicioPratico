@@ -8,6 +8,7 @@ public class Computador {
     SistemaOperacional so;
 
     void addMemoriaUSB(MemoriaUSB musb){
+
         musb = memoriaUSB;
     }
     void mostraPCConfig(){

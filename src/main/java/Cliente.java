@@ -1,16 +1,23 @@
+import java.util.ArrayList;
+
 public class Cliente {
     String nome;
     long cpf;
-    Computador computadorCliente;
+    ArrayList<Computador> computadorCliente = new ArrayList<>();
 
-    float calculaTotalCompra (){
-        float totalCompra = computadorCliente.preço;
-        if(computadorCliente != null){
-            totalCompra += computadorCliente.preço;
+    float calculaTotalCompra() {
+        float totalCompra = 0;
+        for (Computador computador : computadorCliente) {
+            if (computador != null) {
+                totalCompra += computador.preço;
+            }
         }
-        else{
-        return  totalCompra;
-        }
+        return totalCompra;
+    }
 
+    void mostraCliente() {
+        System.out.println("Nome: " + nome);
+        System.out.println("CPF: " + cpf);
+        System.out.println("Total da Compra: " + calculaTotalCompra());
     }
 }
